@@ -6,9 +6,15 @@ on:
       - 'v*'
 
 jobs:
-  deploy_a_bundle_to_production:
+  approve:
     runs-on: ubuntu-latest
     environment: production
+    steps:
+      - run: echo "Approved"
+
+  deploy_a_bundle_to_production:
+    needs: approve
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,8 +23,8 @@ jobs:
         run: echo "deploy a bundle job for production"
 
   deploy_b_bundle_to_production:
+    needs: approve
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
