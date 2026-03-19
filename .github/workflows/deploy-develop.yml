@@ -1,0 +1,28 @@
+name: deploy-develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy_a_bundle_to_develop:
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy a bundle job for develop"
+
+  deploy_b_bundle_to_develop:
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy b bundle job for develop"
+
