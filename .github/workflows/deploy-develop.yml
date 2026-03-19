@@ -6,9 +6,15 @@ on:
       - develop
 
 jobs:
-  deploy_a_bundle_to_develop:
+  approve:
     runs-on: ubuntu-latest
     environment: develop
+    steps:
+      - run: echo "Approved"
+
+  deploy_a_bundle_to_develop:
+    needs: approve
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,8 +23,8 @@ jobs:
         run: echo "deploy a bundle job for develop"
 
   deploy_b_bundle_to_develop:
+    needs: approve
     runs-on: ubuntu-latest
-    environment: develop
     steps:
       - name: Checkout
         uses: actions/checkout@v4
