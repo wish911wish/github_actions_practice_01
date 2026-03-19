@@ -1,0 +1,34 @@
+name: deploy-develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - run: echo "Approved"
+
+  deploy_a_bundle_to_develop:
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy a bundle job for develop"
+
+  deploy_b_bundle_to_develop:
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy b bundle job for develop"
+

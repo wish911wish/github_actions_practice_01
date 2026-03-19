@@ -1,0 +1,33 @@
+name: deploy-staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - run: echo "Approved"
+
+  deploy_a_bundle_to_staging:
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy a bundle job for staging"
+
+  deploy_b_bundle_to_staging:
+    needs: approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "deploy b bundle job for staging"
