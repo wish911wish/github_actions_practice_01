@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - develop
+      - staging
+
+jobs:
+  static_code_analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "static code analysis job"
+
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "unit test job"
+
+  integration_test:
+    needs: [unit_test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Say Hello
+        run: echo "integration test job"
